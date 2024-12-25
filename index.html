@@ -4,12 +4,10 @@
   <head>
     <title>fadesinever</title>
     <link rel="icon" type="image/x-icon" href="./icon.png" />
-
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no"
     />
-    <!-- <link rel="stylesheet" href="styles.css" /> -->
     <style>
       body {
         margin: 0;
@@ -201,18 +199,18 @@
         transform: translateY(0);
       }
 
-      .floating-ball {
+      .morphing-shape {
         position: absolute;
         width: 300px;
         height: 300px;
-        right: 1in;
-        top: 55%;
+        right: -0.07in;
+        top: 49%;
         transform: translateY(-50%);
       }
 
       .shape-morph {
-        width: 100%;
-        height: 100%;
+        width: 70%;
+        height: 70%;
         background: white;
         opacity: 0.8;
         box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
@@ -229,7 +227,7 @@
         margin: 0 auto;
       }
 
-      .idea-card {
+      .mycards {
         position: relative;
         background: rgba(255, 255, 255, 0.07);
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -240,13 +238,17 @@
         cursor: move;
         transition: transform 0.3s ease;
         height: auto;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
       }
 
-      .idea-card.active {
+      .mycards.active {
         z-index: 1000;
-        opacity: 0.95; /* Slightly adjusted */
-        transform: scale(1.02) rotate(1deg); /* Added slight rotation */
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+        opacity: 0.95;
+        transform: scale(1.02) rotate(1deg);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
       }
 
       .ideas-section {
@@ -276,16 +278,16 @@
         margin-bottom: 1.5rem;
         color: rgba(255, 255, 255, 0.9);
         text-align: center;
-        width: 100%; /* Add this line */
+        width: 100%;
       }
 
-      .idea-card h3 {
+      .mycards h3 {
         font-size: 1.3rem;
         margin-bottom: 0.8rem;
         color: rgba(255, 255, 255, 0.9);
       }
 
-      .idea-card p {
+      .mycards p {
         font-size: 1.1rem;
         line-height: 1.5;
         margin: 0;
@@ -360,22 +362,20 @@
           font-size: 1.5rem;
         }
         .about-section {
-          width: 100%;
           font-size: 1.2rem;
           padding: 0 1rem;
         }
         .ideas-section {
           font-size: 1.2rem;
-          width: 100%;
         }
-        .idea-card {
+        .mycards {
           padding: 1rem;
           margin-bottom: 2rem;
         }
-        .idea-card h3 {
+        .mycards h3 {
           font-size: 1.1rem;
         }
-        .idea-card p {
+        .mycards p {
           font-size: 1rem;
         }
         .card-handle {
@@ -428,32 +428,37 @@
       </div>
       <div class="about-section">
         <p>
-          <br />I am a 14 year old developer who uses modern AI tools to create
-          my projects. <br />I can also design social media posts.
+          <br />I am a 14 year old developer who uses modern <br />AI tools to
+          create my projects. <br />I can also design social media posts & more.
           <br />
-          <br />Why choose me? Because my designs are simplistic and direct.
+          <br />Why choose me? Because my designs are:
+          <li>Simple</li>
+          <li>Direct</li>
+          <br />
+          They say rich people don't flaunt their money, neither does an
+          intelligent fellow boast about their knowledge.
         </p>
-        <div class="floating-ball">
+        <div class="morphing-shape">
           <div class="shape-morph"></div>
         </div>
       </div>
       <div class="ideas-section">
         <h2>My Ideas</h2>
         <div class="cards-container">
-          <div class="idea-card">
+          <div class="mycards">
             <h3>Lorem Ispus 1</h3>
             <p>lol</p>
           </div>
-          <div class="idea-card">
+          <div class="mycards">
             <h3>Lorem Ipsum 2</h3>
             <p>lol</p>
           </div>
 
-          <div class="idea-card">
+          <div class="mycards">
             <h3>Lorem Ipsum 3</h3>
             <p>lol</p>
           </div>
-          <div class="idea-card">
+          <div class="mycards">
             <h3>Inspired by</h3>
             <p>motherfuckingwebsite.com & waitbutwhy.com/</p>
           </div>
@@ -469,8 +474,6 @@
         const backText = document.querySelector("#container2 .text");
         const aboutSection = document.querySelector(".about-section");
         const cardsContainer = document.querySelector(".cards-container");
-        const cards = document.querySelectorAll(".idea-card");
-        const bgMusic = document.getElementById("bgMusic");
 
         let isFlipped = false;
         let isDragging = false;
@@ -493,9 +496,9 @@
         }
 
         function startDragging(e) {
-          if (!e.target.closest(".idea-card")) return;
+          if (!e.target.closest(".mycards")) return;
 
-          currentCard = e.target.closest(".idea-card");
+          currentCard = e.target.closest(".mycards");
           currentCard.style.zIndex = "1000";
           currentCard.classList.add("active");
 
@@ -545,7 +548,7 @@
           xOffset = currentX - initialX;
           yOffset = currentY - initialY;
 
-          const cards = document.querySelectorAll(".idea-card");
+          const cards = document.querySelectorAll(".mycards");
           const currentRect = currentCard.getBoundingClientRect();
 
           cards.forEach((card) => {
